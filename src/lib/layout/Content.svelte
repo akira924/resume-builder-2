@@ -5,7 +5,7 @@
   let { children }: Props = $props();
 </script>
 
-<main class="flex-1 overflow-y-auto bg-gray-100 p-6">
+<main class="flex-1 overflow-y-auto bg-gray-100 dark:bg-gray-900 p-6">
   {#if children}
     {@render children()}
   {:else}
