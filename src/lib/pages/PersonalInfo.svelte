@@ -1,12 +1,5 @@
 <script lang="ts">
-  let fullName = $state('');
-  let email = $state('');
-  let phone = $state('');
-  let location = $state('');
-
-  let linkedin = $state('');
-  let github = $state('');
-  let website = $state('');
+  import { resume } from '../resume.svelte';
 </script>
 
 <div class="max-w-2xl mx-auto space-y-8">
@@ -27,7 +20,7 @@
         <input
           id="fullName"
           type="text"
-          bind:value={fullName}
+          bind:value={resume.personal.fullName}
           placeholder="John Doe"
           required
           class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
@@ -41,7 +34,7 @@
         <input
           id="email"
           type="email"
-          bind:value={email}
+          bind:value={resume.personal.email}
           placeholder="john@example.com"
           required
           class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
@@ -55,7 +48,7 @@
         <input
           id="phone"
           type="tel"
-          bind:value={phone}
+          bind:value={resume.personal.phone}
           placeholder="+1 (555) 123-4567"
           required
           class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
@@ -69,7 +62,7 @@
         <input
           id="location"
           type="text"
-          bind:value={location}
+          bind:value={resume.personal.location}
           placeholder="New York, NY"
           required
           class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
@@ -95,7 +88,7 @@
           <input
             id="linkedin"
             type="url"
-            bind:value={linkedin}
+            bind:value={resume.personal.linkedin}
             placeholder="https://linkedin.com/in/johndoe"
             class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 pl-10 pr-3.5 py-2.5 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
           />
@@ -111,7 +104,7 @@
           <input
             id="github"
             type="url"
-            bind:value={github}
+            bind:value={resume.personal.github}
             placeholder="https://github.com/johndoe"
             class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 pl-10 pr-3.5 py-2.5 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
           />
@@ -127,7 +120,7 @@
           <input
             id="website"
             type="url"
-            bind:value={website}
+            bind:value={resume.personal.website}
             placeholder="https://johndoe.dev"
             class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 pl-10 pr-3.5 py-2.5 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
           />

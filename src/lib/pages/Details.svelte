@@ -1,5 +1,5 @@
 <script lang="ts">
-  let summary = $state('');
+  import { resume } from '../resume.svelte';
 </script>
 
 <div class="max-w-2xl mx-auto space-y-8">
@@ -17,7 +17,7 @@
       </label>
       <textarea
         id="summary"
-        bind:value={summary}
+        bind:value={resume.summary}
         rows={5}
         placeholder="Write a brief professional summary highlighting your key skills and experience..."
         class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 resize-none"

@@ -1,49 +1,5 @@
 <script lang="ts">
-  interface EducationRow {
-    id: number;
-    institution: string;
-    degreeMajor: string;
-    period: string;
-    location: string;
-  }
-
-  interface CertificationRow {
-    id: number;
-    institution: string;
-    certification: string;
-    period: string;
-  }
-
-  let nextEduId = $state(1);
-  let nextCertId = $state(1);
-
-  function createEducationRow(): EducationRow {
-    return { id: nextEduId++, institution: '', degreeMajor: '', period: '', location: '' };
-  }
-
-  function createCertificationRow(): CertificationRow {
-    return { id: nextCertId++, institution: '', certification: '', period: '' };
-  }
-
-  let educationRows = $state<EducationRow[]>([createEducationRow()]);
-  let certificationRows = $state<CertificationRow[]>([createCertificationRow()]);
-
-  function addEducation() {
-    educationRows.push(createEducationRow());
-  }
-
-  function removeEducation(id: number) {
-    if (educationRows.length <= 1) return;
-    educationRows = educationRows.filter((r) => r.id !== id);
-  }
-
-  function addCertification() {
-    certificationRows.push(createCertificationRow());
-  }
-
-  function removeCertification(id: number) {
-    certificationRows = certificationRows.filter((r) => r.id !== id);
-  }
+  import { resume } from '../resume.svelte';
 
   const inputClass =
     'w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 px-3.5 py-2.5 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20';
@@ -56,15 +12,15 @@
   </div>
 
   <!-- Education Section -->
-  {#each educationRows as row, i (row.id)}
+  {#each resume.education as row, i (row.id)}
     <section class="relative bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 space-y-5">
       <div class="flex items-center justify-between">
         <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200">Education {i + 1}</h2>
 
-        {#if educationRows.length > 1}
+        {#if resume.education.length > 1}
           <button
             type="button"
-            onclick={() => removeEducation(row.id)}
+            onclick={() => resume.removeEducation(row.id)}
             class="inline-flex items-center gap-1 rounded-md px-2.5 py-1.5 text-xs font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors cursor-pointer"
           >
             <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -136,7 +92,7 @@
 
   <button
     type="button"
-    onclick={addEducation}
+    onclick={resume.addEducation}
     class="w-full rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600 py-3.5 text-sm font-medium text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 dark:hover:border-blue-500 dark:hover:text-blue-400 transition-colors cursor-pointer"
   >
     <span class="inline-flex items-center gap-1.5">
@@ -155,15 +111,15 @@
     </div>
   </div>
 
-  {#each certificationRows as row, i (row.id)}
+  {#each resume.certifications as row, i (row.id)}
     <section class="relative bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 space-y-5">
       <div class="flex items-center justify-between">
         <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200">Certification {i + 1}</h2>
 
-        {#if certificationRows.length > 0}
+        {#if resume.certifications.length > 0}
           <button
             type="button"
-            onclick={() => removeCertification(row.id)}
+            onclick={() => resume.removeCertification(row.id)}
             class="inline-flex items-center gap-1 rounded-md px-2.5 py-1.5 text-xs font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors cursor-pointer"
           >
             <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -219,7 +175,7 @@
 
   <button
     type="button"
-    onclick={addCertification}
+    onclick={resume.addCertification}
     class="w-full rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600 py-3.5 text-sm font-medium text-gray-500 dark:text-gray-400 hover:border-blue-400 hover:text-blue-500 dark:hover:border-blue-500 dark:hover:text-blue-400 transition-colors cursor-pointer"
   >
     <span class="inline-flex items-center gap-1.5">
