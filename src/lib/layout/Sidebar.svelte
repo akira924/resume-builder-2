@@ -3,18 +3,18 @@
 
   const sections = [
     {
-      title: 'Details',
+      title: 'Profile',
       links: [
         { route: 'personal', label: 'Personal Info' },
         { route: 'experience', label: 'Experience' },
         { route: 'education', label: 'Education' },
+        { route: 'details', label: 'Overview' },
       ],
     },
     {
-      title: 'Overview',
+      title: 'Kernel',
       links: [
-        { route: 'details', label: 'Details' },
-        { route: 'prompt', label: 'Prompt' },
+        { route: 'prompt', label: 'AI Prompt' },
       ],
     },
   ];
