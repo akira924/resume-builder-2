@@ -8,6 +8,7 @@
   import Education from './lib/pages/Education.svelte'
   import Details from './lib/pages/Details.svelte'
   import Prompt from './lib/pages/Prompt.svelte'
+  import Preview from './lib/pages/Preview.svelte'
   import { theme } from './lib/theme.svelte'
   import { router } from './lib/router.svelte'
 </script>
@@ -28,6 +29,8 @@
         <Details />
       {:else if router.current === 'prompt'}
         <Prompt />
+      {:else if router.current === 'preview'}
+        <Preview />
       {:else}
         <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Welcome</h1>
         <p class="text-gray-600 dark:text-gray-400">Select a section from the sidebar to start building your resume.</p>

@@ -15,6 +15,7 @@
       title: 'Kernel',
       links: [
         { route: 'prompt', label: 'AI Prompt' },
+        { route: 'preview', label: 'Preview' },
       ],
     },
   ];

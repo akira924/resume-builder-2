@@ -65,6 +65,7 @@ function createResumeStore() {
   let certifications: CertificationRow[] = $state(initialCertifications);
   let summary: string = $state(saved.summary ?? '');
   let prompt: string = $state(saved.prompt ?? '');
+  let resumeJson: string = $state(saved.resumeJson ?? '');
 
   let _nextExpId = Math.max(0, ...initialExperience.map((r) => r.id)) + 1;
   let _nextEduId = Math.max(0, ...initialEducation.map((r) => r.id)) + 1;
@@ -74,7 +75,7 @@ function createResumeStore() {
     $effect(() => {
       localStorage.setItem(
         STORAGE_KEY,
-        JSON.stringify({ personal, experience, education, certifications, summary, prompt }),
+        JSON.stringify({ personal, experience, education, certifications, summary, prompt, resumeJson }),
       );
     });
   });
@@ -137,6 +138,13 @@ function createResumeStore() {
     },
     set prompt(v: string) {
       prompt = v;
+    },
+
+    get resumeJson() {
+      return resumeJson;
+    },
+    set resumeJson(v: string) {
+      resumeJson = v;
     },
   };
 }
