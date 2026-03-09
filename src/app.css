@@ -1,10 +1,26 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme {
+  --shadow-*: initial;
+  --shadow: initial;
+  --inset-shadow-*: initial;
+  --drop-shadow-*: initial;
+}
+
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
 }
 
 #app {
