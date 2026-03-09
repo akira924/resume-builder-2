@@ -1,5 +1,6 @@
 <script lang="ts">
   import { resume } from '../resume.svelte';
+  import { generateResumePdf } from '../pdf';
 
   interface ResumeData {
     role: string;
@@ -112,6 +113,23 @@
     setTimeout(() => (pasteConfirm = false), 1500);
   }
 
+  let downloading: boolean = $state(false);
+
+  function handleDownloadPdf() {
+    const obj = buildCompletedJson();
+    if (!obj) return;
+    downloading = true;
+    try {
+      const doc = generateResumePdf(obj as any);
+      const name = resume.personal.fullName
+        ? `${resume.personal.fullName.replace(/\s+/g, '_')}_Resume.pdf`
+        : 'Resume.pdf';
+      doc.save(name);
+    } finally {
+      setTimeout(() => (downloading = false), 1200);
+    }
+  }
+
   const inputCls =
     'w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-4 py-3 text-sm text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-colors font-mono';
 </script>
@@ -186,6 +204,33 @@
       {/if}
     </div>
   </section>
+
+  <!-- Download PDF Button -->
+  {#if parsed}
+    <div class="flex justify-center">
+      <button
+        type="button"
+        onclick={handleDownloadPdf}
+        disabled={downloading}
+        class="inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all cursor-pointer shadow-md
+          {downloading
+            ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300'
+            : 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-200 dark:shadow-blue-900/30 hover:shadow-lg'}"
+      >
+        {#if downloading}
+          <svg class="h-4.5 w-4.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+          </svg>
+          Downloaded!
+        {:else}
+          <svg class="h-4.5 w-4.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+          </svg>
+          Download Resume PDF
+        {/if}
+      </button>
+    </div>
+  {/if}
 
   <!-- Section 2: Completed JSON (collapsible) -->
   {#if parsed}
