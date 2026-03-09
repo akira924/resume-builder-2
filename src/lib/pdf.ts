@@ -33,8 +33,8 @@ interface CompletedResume {
   }[];
 }
 
-const PAGE_W = 210;
-const PAGE_H = 297;
+const PAGE_W = 215.9;
+const PAGE_H = 279.4;
 const MARGIN_X = 16;
 const MARGIN_TOP = 18;
 const MARGIN_BOTTOM = 16;
@@ -42,7 +42,7 @@ const CONTENT_W = PAGE_W - MARGIN_X * 2;
 const LINE_HEIGHT = 4.6;
 
 export function generateResumePdf(data: CompletedResume): jsPDF {
-  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  const doc = new jsPDF({ unit: 'mm', format: 'letter' });
   let y = MARGIN_TOP;
 
   function ensureSpace(needed: number) {
